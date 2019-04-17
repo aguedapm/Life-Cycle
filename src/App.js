@@ -1,26 +1,71 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+
+
+
 class App extends Component {
+
+  state = {
+    title : '',
+    globalTitle: 'The circle of life',
+  }
+
+  onChange = (e) => {
+    this.setState({
+      title : e.target.value,
+    })
+   }
+
+  componentDidMount = () => {
+     console.log("Formulaire rendu")
+  }
+
+  submitForm = (e) => {
+    e.preventDefault()
+    this.setState({
+      globalTitle : `Mon formulaire - ${this.state.title}`,
+    })
+  }
+
+  componentDidUpdate = () => {
+    console.log("Titre changé")
+  }
+
+   
   render() {
+
+
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <p>
-            Edit <code>src/App.js</code> and save to reload.
+            {this.state.globalTitle}
           </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+
         </header>
-      </div>
+        <div className="FormFilm">
+
+          <form onSubmit={this.submitForm}>
+            <fieldset>
+              <div className="form-data">
+                <label htmlFor="name">Title</label>
+                <input
+                  type="text"
+                  id="name"
+                  onChange={this.onChange}
+                  value={this.state.title}
+                />
+              </div>
+
+              <hr />
+              <div className="form-data">
+                <input type="submit" value="Envoyer" />
+              </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
     );
   }
 }
