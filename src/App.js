@@ -29,7 +29,7 @@ class App extends Component {
   }
 
   componentDidUpdate = () => {
-    console.log("Titre changé")
+    return this.state.globalTitle !== 'The circle of life'? console.log("Titre changé") : ''
   }
 
    
